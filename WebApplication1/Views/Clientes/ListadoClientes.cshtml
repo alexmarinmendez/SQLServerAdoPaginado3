@@ -1,0 +1,62 @@
+﻿@model IPagedList<WebApplication1.Models.Clientes>
+
+@{
+    ViewBag.Title = "ListadoClientes";
+}
+
+@using PagedList.Mvc;
+@using PagedList;
+
+<h2>ListadoClientes</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().IdCliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().NombreCliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Direccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Telefono)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Pais)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdCliente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreCliente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Direccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pais)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>
+
+@Html.PagedListPager(Model, i => Url.Action("ListadoClientes", new { pagina = i } ))
